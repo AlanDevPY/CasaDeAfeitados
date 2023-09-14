@@ -43,10 +43,5 @@ btnAgendar.addEventListener("click", (e) => {
         toast.show();
         
     }
-    
-
-
-
-    
-
 });
+

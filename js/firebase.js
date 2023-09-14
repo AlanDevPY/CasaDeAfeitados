@@ -46,3 +46,6 @@ export const addAgendamiento = (nombre, apellido, telefono, hora, servicios) => 
     console.log("No fue posible agregar los datos" + error);
   }
 }
+
+// Funcion para obteer datos
+export const obtenerProductos = (callback) => onSnapshot(collection(db,'Turnos'),callback)
