@@ -1,34 +1,34 @@
-import { addclientes, addAgendamiento } from "/js/firebase.js";
+import { addclientes, addAgendamiento, getDatos } from "/js/firebase.js";
 
 let btnAgendar = document.getElementById("btnAgendar");
 
 btnAgendar.addEventListener("click", (e) => {
     e.preventDefault()
 
-    
+
     let nombre = document.getElementById("inputNombre").value;
     let apellido = document.getElementById("inputApellido").value;
     let telefono = document.getElementById("inputTelefono").value;
     let hora = document.getElementById("inputHora").value;
     let servicios = []
-    
+
     // Obtén una lista de todos los elementos checkbox
     const checkboxes = document.querySelectorAll('.form-check-input');
-    
+
     // Recorre todos los elementos c    heckbox
     checkboxes.forEach(checkbox => {
         // Verifica si el checkbox está marcado
         if (checkbox.checked) {
             servicios.unshift(checkbox.id)
-            
+
         } else {
             // El checkbox no está marcado
         }
     });
 
-    if(!(nombre === "" || telefono === "" || apellido === "")){
+    if (!(nombre === "" || telefono === "" || apellido === "")) {
         // addclientes(nombre, apellido, telefono);
-        // addAgendamiento(nombre, apellido, telefono, hora,servicios);
+        addAgendamiento(nombre, apellido, telefono, hora,servicios);
         console.log("Datos Agregados");
         document.getElementById("inputNombre").value = "";
         document.getElementById("inputApellido").value = "";
@@ -37,11 +37,46 @@ btnAgendar.addEventListener("click", (e) => {
         var toast = new bootstrap.Toast(document.getElementById("liveToast"));
         toast.show();
 
-    }else{
+    } else {
         console.log("No puede agregar datos");
         var toast = new bootstrap.Toast(document.getElementById("errorToast"));
         toast.show();
-        
+
     }
 });
+
+window.addEventListener("DOMContentLoaded", async () => {
+    let cardTurnos = document.getElementById("cardTurnos")
+
+    getDatos((querySnapshot) => {
+        let html = "";
+        const turnos = [];
+
+        querySnapshot.forEach((doc) => {
+            const turno = doc.data(); // Obtener los datos de la tarea
+            turnos.unshift({ ...turno, id: doc.id }); // Agregar cada tarea al arreglo 'tasks' con su ID
+        });
+
+        turnos.forEach((turno) => {
+            html += `
+            <div class="card" style="width: 18rem">
+            <div class="card-body">
+              <h5 class="card-title">${turno.nombre}  ${turno.apellido}</h5>
+              <h6 class="card-subtitle mb-2 text-muted">Tipo de Corte</h6>
+              <p class="card-text">
+            agregar datos de numero de telefono y total
+              </p>
+              <button class="btn btn-success">Terminado</button>
+              <button class="btn btn-danger">Eliminar</button>
+            </div>
+          </div>
+                 `;
+        });
+
+        
+        
+        cardTurnos.innerHTML = html
+    });
+
+})
 

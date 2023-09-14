@@ -48,4 +48,4 @@ export const addAgendamiento = (nombre, apellido, telefono, hora, servicios) => 
 }
 
 // Funcion para obteer datos
-export const obtenerProductos = (callback) => onSnapshot(collection(db,'Turnos'),callback)
+export const getDatos = (callback) => onSnapshot(collection(db,'Turnos'),callback)
