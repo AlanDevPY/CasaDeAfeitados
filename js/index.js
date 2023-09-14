@@ -1,4 +1,4 @@
-import { addclientes, addAgendamiento, getDatos } from "/js/firebase.js";
+import { addclientes, addAgendamiento, getDatos, borrarTurno } from "/js/firebase.js";
 
 let btnAgendar = document.getElementById("btnAgendar");
 
@@ -54,29 +54,35 @@ window.addEventListener("DOMContentLoaded", async () => {
 
         querySnapshot.forEach((doc) => {
             const turno = doc.data(); // Obtener los datos de la tarea
-            turnos.unshift({ ...turno, id: doc.id }); // Agregar cada tarea al arreglo 'tasks' con su ID
+            turnos.push({ ...turno, id: doc.id }); // Agregar cada tarea al arreglo 'tasks' con su ID
         });
+
 
         turnos.forEach((turno) => {
             html += `
             <div class="card" style="width: 18rem">
             <div class="card-body">
               <h5 class="card-title">${turno.nombre}  ${turno.apellido}</h5>
-              <h6 class="card-subtitle mb-2 text-muted">Tipo de Corte</h6>
+              <h6 class="card-subtitle mb-2 text-muted">${turno.servicios}</h6>
               <p class="card-text">
-            agregar datos de numero de telefono y total
+            Numero de Celular : ${turno.telefono}
               </p>
               <button class="btn btn-success">Terminado</button>
-              <button class="btn btn-danger">Eliminar</button>
+              <button data-id="${turno.id}" class="btn btn-danger delete">Eliminar</button>
             </div>
           </div>
                  `;
         });
-
-        
-        
         cardTurnos.innerHTML = html
-    });
 
-})
+        const btnDelet = cardTurnos.querySelectorAll(".delete");
+    
+        btnDelet.forEach((btn) => {
+            btn.addEventListener("click", (event) => {
+              // Llamar a la función deletTask con el ID de la tarea asociado al botón
+              borrarTurno(event.target.dataset.id);
+            });
+          });
+    });
+});
 
