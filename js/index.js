@@ -36,6 +36,8 @@ btnAgendar.addEventListener("click", (e) => {
 
     }else{
         console.log("No puede agregar datos");
+        var toast = new bootstrap.Toast(document.getElementById("liveToast"));
+        toast.show();
     }
     
 
