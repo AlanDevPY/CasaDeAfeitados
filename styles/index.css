@@ -2,6 +2,7 @@
 .contenedorPrincipal{
     display: flex;
     margin: 20px;
+    justify-content: center;
 }
 .turnosAgendados{
     display: flex;

@@ -27,17 +27,21 @@ btnAgendar.addEventListener("click", (e) => {
     });
 
     if(!(nombre === "" || telefono === "" || apellido === "")){
-        addclientes(nombre, apellido, telefono);
-        addAgendamiento(nombre, apellido, telefono, hora,servicios);
+        // addclientes(nombre, apellido, telefono);
+        // addAgendamiento(nombre, apellido, telefono, hora,servicios);
         console.log("Datos Agregados");
         document.getElementById("inputNombre").value = "";
         document.getElementById("inputApellido").value = "";
         document.getElementById("inputTelefono").value = "";
+        document.getElementById("inputHora").value = "";
+        var toast = new bootstrap.Toast(document.getElementById("liveToast"));
+        toast.show();
 
     }else{
         console.log("No puede agregar datos");
-        var toast = new bootstrap.Toast(document.getElementById("liveToast"));
+        var toast = new bootstrap.Toast(document.getElementById("errorToast"));
         toast.show();
+        
     }
     
 
