@@ -57,18 +57,21 @@ window.addEventListener("DOMContentLoaded", async () => {
             turnos.push({ ...turno, id: doc.id }); // Agregar cada tarea al arreglo 'tasks' con su ID
         });
 
+        console.log(turnos);
+
 
         turnos.forEach((turno) => {
             html += `
             <div class="card" style="width: 18rem">
             <div class="card-body">
-              <h5 class="card-title">${turno.nombre}  ${turno.apellido}</h5>
-              <h6 class="card-subtitle mb-2 text-muted">${turno.servicios}</h6>
-              <p class="card-text">
+            <h6 class="card-subtitle mb-2 text-muted">${turno.time}</h6>
+            <h5 class="card-title">${turno.nombre}  ${turno.apellido}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">${turno.servicios}</h6>
+            <p class="card-text">
             Numero de Celular : ${turno.telefono}
-              </p>
-              <button class="btn btn-success">Terminado</button>
-              <button data-id="${turno.id}" class="btn btn-danger delete">Eliminar</button>
+            </p>
+            <button class="btn btn-success">Terminado</button>
+            <button data-id="${turno.id}" class="btn btn-danger delete">Eliminar</button>
             </div>
           </div>
                  `;

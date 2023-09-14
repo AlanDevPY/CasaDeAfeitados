@@ -24,10 +24,12 @@ const db = getFirestore();
 //   Funcion para agregar clientes a la base de datos de firestore
 export const addclientes = (nombre, apellido, telefono) => {
   try {
+
     addDoc(collection(db, "clientes"), {
       nombre,
       apellido,
       telefono,
+      time
     });
   } catch (error) {
     console.log("No fue posible agregar los datos" + error);
@@ -35,12 +37,23 @@ export const addclientes = (nombre, apellido, telefono) => {
 }
 export const addAgendamiento = (nombre, apellido, telefono, hora, servicios) => {
   try {
+    
+    const options = {
+      year: "numeric",
+      month: "numeric",
+      day: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+      second: "numeric",
+      hour12: false, // Usar formato de 24 horas
+    };  const time = new Date().toLocaleString("es-ES", options); // Cambia 'es-ES' al código de tu localización
     addDoc(collection(db, "Turnos"), {
       nombre,
       apellido,
       telefono,
       hora,
-      servicios
+      servicios,
+      time
     });
   } catch (error) {
     console.log("No fue posible agregar los datos" + error);
