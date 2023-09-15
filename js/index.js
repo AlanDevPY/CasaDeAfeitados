@@ -38,11 +38,11 @@ btnAgendar.addEventListener("click", (e) => {
         toast.show();
 
         // funcion para enviar mensaje de recordatorio
-        let mensaje = "";
+        let mensaje = "Turno Registrado, mensaje de prueba";
         var chat = {
           secret: "fc86a086e03f9260d2504bc3ee437864e82e183a",
           account: "16942565446c8349cc7260ae62e3b1396831a8398f64fc4da0bd912",
-          recipient:595986862498,
+          recipient:595975123105,
           type: "text",
           message: mensaje, // Aquí debes proporcionar el mensaje que deseas enviar
         }; 
