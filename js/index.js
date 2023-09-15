@@ -99,7 +99,7 @@ window.addEventListener("DOMContentLoaded", async () => {
             html += `
             <div class="card" style="width: 18rem">
             <div class="card-body">
-            <h6 class="card-subtitle mb-2 text-muted">Turno agendado a las ${turno.time}</h6>
+            <h6 class="card-subtitle mb-2 text-muted">Turno agendado el dia ${turno.time}</h6>
             <h5 class="card-title">${turno.nombre}  ${turno.apellido}</h5>
             <h6 class="card-subtitle mb-2 text-muted">${turno.servicios}</h6>
             <h6 class="card-subtitle mb-2 text-muted"> Total de Servicio : ${turno.totalServicios.toFixed(3)}</h6>
