@@ -11,24 +11,25 @@ btnAgendar.addEventListener("click", (e) => {
     let telefono = document.getElementById("inputTelefono").value;
     let hora = document.getElementById("inputHora").value;
     let servicios = []
+    let totalServicios = 0;
 
     // Obtén una lista de todos los elementos checkbox
     const checkboxes = document.querySelectorAll('.form-check-input');
 
     // Recorre todos los elementos c    heckbox
     checkboxes.forEach(checkbox => {
-        // Verifica si el checkbox está marcado
         if (checkbox.checked) {
-            servicios.unshift(checkbox.id)
-
-        } else {
-            // El checkbox no está marcado
+          let valor = parseFloat(checkbox.getAttribute('data-valor'));
+          servicios.unshift(checkbox.id)
+            totalServicios += valor
         }
-    });
+      });
+      
+      console.log(totalServicios);
 
     if (!(nombre === "" || telefono === "" || apellido === "")) {
         // addclientes(nombre, apellido, telefono);
-        addAgendamiento(nombre, apellido, telefono, hora,servicios);
+        addAgendamiento(nombre, apellido, telefono, hora,servicios,totalServicios);
         console.log("Datos Agregados");
         document.getElementById("inputNombre").value = "";
         document.getElementById("inputApellido").value = "";
@@ -57,8 +58,6 @@ window.addEventListener("DOMContentLoaded", async () => {
             turnos.push({ ...turno, id: doc.id }); // Agregar cada tarea al arreglo 'tasks' con su ID
         });
 
-        console.log(turnos);
-
 
         turnos.forEach((turno) => {
             html += `
@@ -67,9 +66,9 @@ window.addEventListener("DOMContentLoaded", async () => {
             <h6 class="card-subtitle mb-2 text-muted">${turno.time}</h6>
             <h5 class="card-title">${turno.nombre}  ${turno.apellido}</h5>
             <h6 class="card-subtitle mb-2 text-muted">${turno.servicios}</h6>
-            <p class="card-text">
-            Numero de Celular : ${turno.telefono}
-            </p>
+            <h6 class="card-subtitle mb-2 text-muted"> Total de Servicio : ${turno.totalServicios.toFixed(3)}</h6>
+            <h6 class="card-subtitle mb-2 text-muted"> Numero de Telefono ${turno.telefono}</h6>
+            <h6 class="card-subtitle mb-2"> Turno Agendado para las : ${turno.hora}</h6>
             <button class="btn btn-success">Terminado</button>
             <button data-id="${turno.id}" class="btn btn-danger delete">Eliminar</button>
             </div>

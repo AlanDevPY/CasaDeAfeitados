@@ -35,7 +35,7 @@ export const addclientes = (nombre, apellido, telefono) => {
     console.log("No fue posible agregar los datos" + error);
   }
 }
-export const addAgendamiento = (nombre, apellido, telefono, hora, servicios) => {
+export const addAgendamiento = (nombre, apellido, telefono, hora, servicios,totalServicios) => {
   try {
     
     const options = {
@@ -53,7 +53,8 @@ export const addAgendamiento = (nombre, apellido, telefono, hora, servicios) => 
       telefono,
       hora,
       servicios,
-      time
+      time,
+      totalServicios
     });
   } catch (error) {
     console.log("No fue posible agregar los datos" + error);
