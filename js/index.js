@@ -104,7 +104,7 @@ window.addEventListener("DOMContentLoaded", async () => {
             <h6 class="card-subtitle mb-2 text-muted">${turno.servicios}</h6>
             <h6 class="card-subtitle mb-2 text-muted"> Total de Servicio : ${turno.totalServicios.toFixed(3)}</h6>
             <h6 class="card-subtitle mb-2 text-muted"> Numero de Telefono ${turno.telefono}</h6>
-            <h6 class="card-subtitle mb-2"> Turno Agendado para las : ${turno.hora}</h6>
+            <h6 class="card-subtitle mb-2"> Turno Agendado para las : ${turno.hora}Hs</h6>
             <button class="btn btn-dark">Terminado</button>
             <button data-id="${turno.id}" class="btn btn-danger delete">Eliminar</button>
             </div>
