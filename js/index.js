@@ -47,8 +47,6 @@ los servicios  a ser realizado son : *${servicios}*
 con un costo total de  : ${totalServicios.toFixed(3)}
 
 Le Agradecemos su preferencia
-
-        
         `;
 
         var chat = {
