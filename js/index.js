@@ -11,6 +11,7 @@ btnAgendar.addEventListener("click", (e) => {
     let telefono = document.getElementById("inputTelefono").value;
     let hora = document.getElementById("inputHora").value;
     let servicios = []
+    let operadora = 595
     let totalServicios = 0;
 
     // Obtén una lista de todos los elementos checkbox
@@ -38,11 +39,22 @@ btnAgendar.addEventListener("click", (e) => {
         toast.show();
 
         // funcion para enviar mensaje de recordatorio
-        let mensaje = "Turno Registrado, mensaje de prueba";
+        let mensaje = `
+          Hola *${nombre} ${apellido}*,
+
+Su turno fue registrado para las : *${hora}* Hs
+los servicios  a ser realizado son : *${servicios}*
+con un costo total de  : ${totalServicios.toFixed(3)}
+
+Le Agradecemos su preferencia
+
+        
+        `;
+
         var chat = {
           secret: "fc86a086e03f9260d2504bc3ee437864e82e183a",
           account: "16942565446c8349cc7260ae62e3b1396831a8398f64fc4da0bd912",
-          recipient:595975123105,
+          recipient:operadora+telefono,
           type: "text",
           message: mensaje, // Aquí debes proporcionar el mensaje que deseas enviar
         }; 
