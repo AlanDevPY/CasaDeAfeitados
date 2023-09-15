@@ -37,6 +37,31 @@ btnAgendar.addEventListener("click", (e) => {
         var toast = new bootstrap.Toast(document.getElementById("liveToast"));
         toast.show();
 
+        // funcion para enviar mensaje de recordatorio
+        let mensaje = "";
+        var chat = {
+          secret: "fc86a086e03f9260d2504bc3ee437864e82e183a",
+          account: "16942565446c8349cc7260ae62e3b1396831a8398f64fc4da0bd912",
+          recipient:595986862498,
+          type: "text",
+          message: mensaje, // Aquí debes proporcionar el mensaje que deseas enviar
+        }; 
+
+        $.ajax({
+          type: "POST",
+          url: "https://whats-flow.com/api/send/whatsapp",
+          data: chat,
+          success: function (response) {
+            // Maneja la respuesta del servidor aquí (puede requerir validación)
+            console.log(response);
+          },
+          error: function (xhr, textStatus, errorThrown) {
+            // Maneja los errores de manera adecuada, muestra mensajes al usuario si es necesario
+            console.error("Error en la solicitud: " + textStatus, errorThrown);
+          },
+        });
+
+
     } else {
         console.log("No puede agregar datos");
         var toast = new bootstrap.Toast(document.getElementById("errorToast"));
@@ -75,6 +100,11 @@ window.addEventListener("DOMContentLoaded", async () => {
                  `;
         });
         cardTurnos.innerHTML = html
+
+        // funcion para mandar mensaje de recordatorio
+
+        
+        // btn para eliminar turnos
 
         const btnDelet = cardTurnos.querySelectorAll(".delete");
     
