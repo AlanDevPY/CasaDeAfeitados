@@ -40,7 +40,7 @@ btnAgendar.addEventListener("click", (e) => {
 
         // funcion para enviar mensaje de recordatorio
         let mensaje = `
-          Hola *${nombre} ${apellido}*,
+          Hola *${nombre} ${apellido}* ,
 
 Su turno fue registrado para las : *${hora}* Hs
 los servicios  a ser realizado son : *${servicios}*
