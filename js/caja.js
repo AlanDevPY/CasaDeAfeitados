@@ -1,4 +1,4 @@
-import { getDatosCaja, cerrarCaja } from "/js/firebase.js";
+import { getDatosCaja, deleteCaja } from "/js/firebase.js";
 
 window.addEventListener("DOMContentLoaded", async () => {
     let tbody = document.getElementById("tbody")
@@ -34,3 +34,9 @@ window.addEventListener("DOMContentLoaded", async () => {
 
     })
 });
+
+let cerrarCaja = document.getElementById("cerrarCaja")
+
+cerrarCaja.addEventListener("click",() => {
+    deleteCaja()
+})

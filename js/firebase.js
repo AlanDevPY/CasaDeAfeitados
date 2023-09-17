@@ -85,4 +85,4 @@ export const addAgendamiento = (nombre, apellido, telefono, hora, servicios,tota
 export const getDatos = (callback) => onSnapshot(collection(db,'Turnos'),callback)
 export const getDatosCaja = (callback) => onSnapshot(collection(db,'Caja'),callback)
 export const borrarTurno = (id) => deleteDoc(doc(db,'Turnos',id));
-export const cerrarCaja = (id) => deleteDoc(doc(db,'Turnos',id));
+export const deleteCaja = (id) => deleteDoc(doc(db,'Caja'));
