@@ -36,7 +36,23 @@ export const addclientes = (nombre, apellido, telefono) => {
   }
 }
 
-// funcion para agregar servicios terminado a la 
+// funcion para agregar servicios terminado a la base de datos
+
+export const servicioTerminado = ( nombre, apellido, hora, servicios,totalServicios) => {
+  try {
+
+    addDoc(collection(db,"Caja"), {
+      nombre,
+      apellido,
+      hora,
+      servicios,
+      totalServicios
+    });
+  } catch (error) {
+    console.log("No fue posible registrar a la caja" + error);
+  }
+}
+
 
 // funcion para agregar datos a la base de datos de firestore
 export const addAgendamiento = (nombre, apellido, telefono, hora, servicios,totalServicios) => {

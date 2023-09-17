@@ -1,4 +1,4 @@
-import { addclientes, addAgendamiento, getDatos, borrarTurno } from "/js/firebase.js";
+import { addclientes, addAgendamiento, getDatos, borrarTurno, servicioTerminado } from "/js/firebase.js";
 
 let btnAgendar = document.getElementById("btnAgendar");
 
@@ -103,7 +103,7 @@ window.addEventListener("DOMContentLoaded", async () => {
             <h6 class="card-subtitle mb-2 text-muted"> Total de Servicio : ${turno.totalServicios.toFixed(3)}</h6>
             <h6 class="card-subtitle mb-2 text-muted"> Numero de Telefono ${turno.telefono}</h6>
             <h6 class="card-subtitle mb-2"> Turno Agendado para las : ${turno.hora}Hs</h6>
-            <button data-id="${turno.id}" class="btn btn-dark">Terminado</button>
+            <button data-id="${turno.id}" class="btn btn-dark terminado">Terminado</button>
             <button data-id="${turno.id}" class="btn btn-danger delete">Eliminar</button>
             </div>
           </div>
@@ -111,19 +111,27 @@ window.addEventListener("DOMContentLoaded", async () => {
         });
         cardTurnos.innerHTML = html
 
-        // funcion para mandar mensaje de recordatorio
-
-        
+        const btnTerminado = cardTurnos.querySelectorAll(".terminado");
+        btnTerminado.forEach((btn) => {
+          btn.addEventListener("click", (event) => {
+            const turnoId = event.target.dataset.id; // Obtener el ID del turno
+            const turnoSeleccionado = turnos.find((turno) => turno.id === turnoId); // Encontrar el turno correspondiente en la lista de turnos
+            if (turnoSeleccionado) {
+              // Aquí puedes acceder a los datos del turno seleccionado
+              servicioTerminado(turnoSeleccionado.nombre, turnoSeleccionado.apellido, turnoSeleccionado.hora, turnoSeleccionado.servicios, turnoSeleccionado.totalServicios)
+              borrarTurno(event.target.dataset.id);
+            }
+          });
+        });
+      
         // btn para eliminar turnos
-
         const btnDelet = cardTurnos.querySelectorAll(".delete");
-    
         btnDelet.forEach((btn) => {
             btn.addEventListener("click", (event) => {
               // Llamar a la función deletTask con el ID de la tarea asociado al botón
               borrarTurno(event.target.dataset.id);
             });
           });
-    });
+        });
 });
 
