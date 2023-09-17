@@ -92,6 +92,7 @@ window.addEventListener("DOMContentLoaded", async () => {
             turnos.push({ ...turno, id: doc.id }); // Agregar cada tarea al arreglo 'tasks' con su ID
         });
 
+        turnos.sort((a, b) => b.hora.localeCompare(a.hora));
 
         turnos.forEach((turno) => {
             html += `
