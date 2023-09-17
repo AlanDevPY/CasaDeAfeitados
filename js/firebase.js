@@ -1,7 +1,7 @@
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
-import { getFirestore, collection, addDoc, onSnapshot, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore.js";
+import { getFirestore, collection, getDocs, addDoc, onSnapshot, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore.js";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -24,7 +24,6 @@ const db = getFirestore();
 //   Funcion para agregar clientes a la base de datos de firestore
 export const addclientes = (nombre, apellido, telefono) => {
   try {
-
     addDoc(collection(db, "clientes"), {
       nombre,
       apellido,
@@ -85,4 +84,25 @@ export const addAgendamiento = (nombre, apellido, telefono, hora, servicios,tota
 export const getDatos = (callback) => onSnapshot(collection(db,'Turnos'),callback)
 export const getDatosCaja = (callback) => onSnapshot(collection(db,'Caja'),callback)
 export const borrarTurno = (id) => deleteDoc(doc(db,'Turnos',id));
-export const deleteCaja = (id) => deleteDoc(doc(db,'Caja'));
+
+// import { collection, getDocs, deleteDoc, doc } from "firebase/firestore";
+
+ export const eliminarColeccion = async (nombreColeccion) => {
+  const collectionRef = collection(db, nombreColeccion);
+
+  try {
+    // Obtén todos los documentos de la colección
+    const querySnapshot = await getDocs(collectionRef);
+
+    // Itera sobre los documentos y elimina cada uno
+    querySnapshot.forEach(async (docSnap) => {
+      await deleteDoc(doc(db, nombreColeccion, docSnap.id));
+      console.log(`Documento con ID ${docSnap.id} eliminado de la colección ${nombreColeccion}.`);
+    });
+
+    console.log(`Colección ${nombreColeccion} eliminada completamente.`);
+  } catch (error) {
+    console.error(`Error al eliminar la colección ${nombreColeccion}:`, error);
+  }
+};
+

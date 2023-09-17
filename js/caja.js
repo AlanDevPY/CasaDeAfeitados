@@ -1,11 +1,14 @@
-import { getDatosCaja, deleteCaja } from "/js/firebase.js";
+import { getDatosCaja, eliminarColeccion } from "/js/firebase.js";
 
 window.addEventListener("DOMContentLoaded", async () => {
     let tbody = document.getElementById("tbody")
+    let totalCaja = document.getElementById("totalCaja")
+
 
     getDatosCaja((querySnapshot) => {
         let tr = ""
         const turnos = []
+        let sumaTotalServicios = 0
 
         querySnapshot.forEach((doc) => {
             const turno = doc.data(); // Obtener los datos de la tarea
@@ -25,18 +28,21 @@ window.addEventListener("DOMContentLoaded", async () => {
             <td>${turno.totalServicios.toFixed(3)}</td>
         </tr>
                  `;
-                index++
-        });
+                 sumaTotalServicios += turno.totalServicios;
+                 index++
+                });
+                
+        tbody.innerHTML = tr
 
-      tbody.innerHTML = tr
-
-
+        totalCaja.textContent = sumaTotalServicios.toFixed(3);
 
     })
 });
 
 let cerrarCaja = document.getElementById("cerrarCaja")
 
-cerrarCaja.addEventListener("click",() => {
-    deleteCaja()
+cerrarCaja.addEventListener("click", () => {
+    eliminarColeccion("Caja")
 })
+
+
