@@ -35,6 +35,10 @@ export const addclientes = (nombre, apellido, telefono) => {
     console.log("No fue posible agregar los datos" + error);
   }
 }
+
+// funcion para agregar servicios terminado a la 
+
+// funcion para agregar datos a la base de datos de firestore
 export const addAgendamiento = (nombre, apellido, telefono, hora, servicios,totalServicios) => {
   try {
     
