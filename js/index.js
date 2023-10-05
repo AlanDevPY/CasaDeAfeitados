@@ -51,7 +51,7 @@ Le Agradecemos su preferencia
 
         var chat = {
           secret: "fc86a086e03f9260d2504bc3ee437864e82e183a",
-          account: "16950630656c8349cc7260ae62e3b1396831a8398f65089c19794df",
+          account: "16965118716c8349cc7260ae62e3b1396831a8398f651eb77f25d2e",
           recipient:operadora+telefono,
           type: "text",
           message: mensaje, // Aquí debes proporcionar el mensaje que deseas enviar
